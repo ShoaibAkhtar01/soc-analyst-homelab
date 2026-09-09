@@ -75,7 +75,7 @@ The Wazuh environment provides:
 - Wazuh Indexer
 - Wazuh Dashboard
 
-## Network Requirements
+## 4. Network Requirements
 
 The three virtual machines communicate through an isolated VirtualBox Internal Network.
 
@@ -86,22 +86,26 @@ Kali Linux     192.168.100.3
 Windows 10     192.168.100.4
 Wazuh Server   192.168.100.5
 This design allows the lab systems to communicate with each other while keeping security-testing traffic separated from the primary host network.
+```
 
-##Endpoint Monitoring Requirements
+## 5.Endpoint Monitoring Requirements
+```
 
 The Windows endpoint requires:
 
-#1 Sysmon
+#1 - Sysmon
 
 Sysmon provides enhanced Windows telemetry such as process creation events and other endpoint activity.
 
 #2 Wazuh Agent
 
 The Wazuh Agent collects configured Windows event channels and forwards security telemetry to the Wazuh server.
+```
 
-## Validation Requirements
+## 6.Validation Requirements
 
 The environment is considered operational when:
+```
 
 All three VMs can communicate across the internal network.
 The Wazuh Dashboard is accessible.
@@ -111,5 +115,6 @@ Windows Security events are available.
 Windows events are received by Wazuh.
 Sysmon telemetry generated on the Windows endpoint is searchable in Wazuh.
 Security Considerations
+```
 
 The lab is intended only for authorized cybersecurity training and defensive-security experimentation.
