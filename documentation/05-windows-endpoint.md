@@ -82,6 +82,7 @@ Microsoft-Windows-Sysmon/Operational
 Sysmon events were verified locally through Windows Event Viewer.
 
 Evidence:
+![Sysmon Operational Events](../screenshots/03-sysmon-operational-events.png)
 
 This confirms that Sysmon is installed and generating endpoint telemetry.
 
@@ -93,6 +94,8 @@ The agent is responsible for collecting configured Windows event channels and fo
 The endpoint was successfully registered with Wazuh and verified as active.
 
 Evidence:
+
+![Windows Agent Active](../screenshots/02-windows-agent-active.png)
 
 The active status confirms successful communication between:
 ```
@@ -143,6 +146,7 @@ This approach helps determine whether telemetry generation is working before tro
 After confirming the event locally, the corresponding telemetry was searched in Wazuh.
 
 Evidence:
+![Sysmon Telemetry in Wazuh](../screenshots/06-sysmon-telemetry-wazuh.png)
 
 Successful visibility in Wazuh validates the following pipeline:
 ```
