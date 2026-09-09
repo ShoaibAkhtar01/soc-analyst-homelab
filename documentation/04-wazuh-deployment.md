@@ -127,10 +127,12 @@ Windows event ingestion was validated through the Wazuh interface.
 Sysmon is installed on the Windows endpoint to provide enhanced endpoint telemetry.
 
 The Wazuh Agent is configured to collect the Sysmon Operational event channel:
+```
 <localfile>
   <location>Microsoft-Windows-Sysmon/Operational</location>
   <log_format>eventchannel</log_format>
 </localfile>
+```
 The monitored event channel is:
 Microsoft-Windows-Sysmon/Operational
 
@@ -140,8 +142,10 @@ After configuring Sysmon collection, benign process activity was generated on th
 The resulting Sysmon telemetry was verified in Wazuh.
 
 Evidence:
+![Sysmon Telemetry in Wazuh](../screenshots/06-sysmon-telemetry-wazuh.png)
 
 This confirms that Sysmon telemetry can travel through the complete monitoring pipeline:
+```
 Windows Process Activity
         |
         v
@@ -161,10 +165,12 @@ Windows Event Log
         |
         v
   Wazuh Dashboard
+```
 
  ## 10. Deployment Validation
 
 The Wazuh deployment was considered operational after successfully confirming:
+```
 
 The Wazuh Dashboard was accessible.
 The Windows endpoint was registered.
@@ -173,6 +179,7 @@ Windows security telemetry was generated on the endpoint.
 Windows events were visible in Wazuh.
 Sysmon generated endpoint telemetry.
 Sysmon telemetry was successfully searchable in Wazuh.
+```
 
 These validation checks demonstrate that the SIEM environment is capable of receiving and presenting endpoint security telemetry for SOC analysis.
 
