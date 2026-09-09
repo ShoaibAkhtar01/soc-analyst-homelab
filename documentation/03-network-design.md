@@ -57,11 +57,15 @@ The network consists of:
      Kali Linux      Windows 10       Wazuh
     192.168.100.3   192.168.100.4   192.168.100.5
       Attacker        Endpoint          SIEM
+```
 This topology provides direct communication between the three virtual machines while keeping the lab logically separated from the primary host network.
-5. Communication Flow
+
+## 5. Communication Flow
+
 Kali Linux → Windows 10
 
 The Kali Linux VM acts as the controlled attacker/testing workstation.
+```
 Kali Linux
 192.168.100.3
       |
@@ -85,9 +89,11 @@ Wazuh Agent
 Wazuh Server
 192.168.100.5
 The Wazuh Agent forwards configured endpoint telemetry to the Wazuh environment for analysis.
-6. Telemetry Flow
+```
+## 6. Telemetry Flow
 
 The security monitoring pipeline follows this path:
+```
 Windows Endpoint
        |
        v
@@ -107,30 +113,37 @@ Wazuh Dashboard
        |
        v
 SOC Investigation
+```
 This provides centralized visibility into security activity occurring on the monitored Windows endpoint.
-7. Connectivity Validation
+
+## 7. Connectivity Validation
 
 Before configuring security monitoring, connectivity between the virtual machines was validated.
 
 The expected communication paths are:
+```
 
 Kali    <----> Windows
 Windows <----> Wazuh
 Kali    <----> Wazuh
+```
 Successful communication confirms that all three systems are correctly connected to the VirtualBox Internal Network.
-8. Network Isolation
+## 8. Network Isolation
 
 The lab uses a VirtualBox Internal Network to create a controlled environment for cybersecurity testing.
 
 The purpose of this design is to:
+```
 Keep lab traffic separated from the primary host network.
 Prevent controlled attack simulations from affecting unrelated systems.
 Provide predictable IP addressing.
 Allow endpoint telemetry to be generated and monitored safely.
 Create a repeatable environment for SOC investigations.
-9. Design Benefits
+```
+## 9. Design Benefits
 
 The network architecture provides several benefits for SOC analyst training:
+```
 
 Isolation — security-testing traffic remains within the lab.
 Visibility — endpoint activity can be monitored through Wazuh.
@@ -138,7 +151,9 @@ Repeatability — the same network can be reused for multiple detection scenario
 Controlled testing — activity can be intentionally generated and investigated.
 Centralized monitoring — Windows telemetry is forwarded to the Wazuh SIEM.
 Scalability — additional endpoints or security systems can be added later.
+```
 Network Design Summary
+```
 VirtualBox Internal Network
 192.168.100.0/24
 
@@ -155,5 +170,6 @@ VirtualBox Internal Network
         +---- Wazuh Server
               192.168.100.5
               SIEM / Security Monitoring
+```
 This network provides the isolated foundation required for endpoint monitoring, attack simulation, event collection, and future SOC investigation projects.
 
