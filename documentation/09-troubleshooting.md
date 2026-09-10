@@ -1,12 +1,44 @@
-# Troubleshooting
+# 09 — Troubleshooting
 
-When Sysmon events are visible locally but not in Wazuh:
+## Issue — Sysmon Telemetry Not Visible in Wazuh
 
-1. Confirm Sysmon is generating events locally.
-2. Confirm the Wazuh Agent contains the Sysmon event-channel configuration.
-3. Restart the Wazuh Agent.
-4. Generate a new benign process event.
-5. Verify the new Sysmon Event ID 1 locally.
-6. Search for the new event in Wazuh.
+During validation, Sysmon events were successfully generated on the Windows 10 endpoint, but the expected Sysmon telemetry was initially not visible in Wazuh.
 
-Always generate a new event after changing or restarting telemetry components.
+### Investigation
+
+The following checks were performed:
+
+1. Confirmed Sysmon was generating events locally in:
+
+```text
+Microsoft-Windows-Sysmon/Operational
+```
+2.Confirmed Sysmon Process Creation events (Event ID 1) existed in Windows Event Viewer.
+3.Verified that the Wazuh Agent was running and the Windows endpoint appeared as active in Wazuh.
+4.Verified the Wazuh Agent configuration included the Sysmon event channel:
+```
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+```
+5.Restarted the Wazuh Agent:
+``` Restart-Service -Name Wazuh ```
+6.Generated new benign process activity using notepad.exe and searched for the new telemetry in Wazuh.
+Result
+
+The new Sysmon process telemetry became visible in Wazuh, confirming successful end-to-end collection:
+```
+Windows Activity
+      ↓
+Sysmon
+      ↓
+Wazuh Agent
+      ↓
+Wazuh Server
+      ↓
+Wazuh Dashboard
+```
+#Key Learning
+
+Troubleshooting should validate each layer separately: first confirm the event exists locally, then verify agent configuration and connectivity, and finally confirm SIEM ingestion.
