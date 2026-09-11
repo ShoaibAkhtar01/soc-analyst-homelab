@@ -183,6 +183,26 @@ This project demonstrates hands-on experience with:
 - Git/GitHub documentation workflow
 
 ---
+## 🔎 SOC Investigation Projects
+
+The SOC homelab is used for hands-on security monitoring and incident investigation scenarios.
+
+### Project 2 — SSH Brute-Force Detection & Investigation
+
+Simulated controlled SSH password-guessing activity against the monitored Windows endpoint and investigated the resulting authentication telemetry as an L1 SOC analyst.
+
+**Key findings:**
+- Identified 9 failed authentication attempts within approximately 16 seconds.
+- Analyzed Windows Security Event ID `4625`.
+- Detected failed logons in Wazuh using Rule ID `60122`.
+- Correlated Windows Security and OpenSSH telemetry.
+- Attributed the authentication attempts to source `192.168.100.3`.
+- Investigated Event ID `4624` to assess whether authentication succeeded.
+- Mapped the observed password-guessing behavior to MITRE ATT&CK `T1110.001`.
+
+**Skills demonstrated:** Wazuh SIEM, Windows Event Logs, OpenSSH log analysis, authentication investigation, event correlation, timeline analysis, source attribution, MITRE ATT&CK, and incident assessment.
+
+➡️ [View the complete Project 2 investigation](projects/02-brute-force-investigation/README.md)
 
 ## 🚀 Future SOC Projects
 
