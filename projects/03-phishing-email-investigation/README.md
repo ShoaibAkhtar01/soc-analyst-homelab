@@ -94,7 +94,8 @@ Verdict     : suspicious
 Severity    : high
 ```
 Source:
-```scripts/email_analyzer.py``` 
+![Email analyzer detection](./screenshots/01-phishing-email-analyzer-detection.png)
+
 ## Windows Event Generation
 Suspicious detections were written to the Windows Application log using:
 ```
@@ -143,7 +144,7 @@ Windows Event 3101
 → MITRE ATT&CK T1566.002
 ```
 Source:
-```rules/project3_email_rules.xml```
+- [Custom Wazuh Rule 100301](./rules/project3_email_rules.xml)
 Evidence:
 
 
@@ -158,6 +159,8 @@ The X-Mailer header identified Swaks as the simulation tool.
 SPF, DKIM, and DMARC results were not available in this lab scenario.
 ```
 Evidence:
+![Phishing email header analysis](./screenshots/04-phishing-email-header-analysis.png)
+
 
 ## IOC Analysis
 Indicators were classified before enrichment.
@@ -174,7 +177,7 @@ support@security-help.local
 Lab-only Reply-To address
 ```
 Investigation notes:
-```investigation/ioc-analysis.txt```
+- [IOC Analysis](./investigation/ioc-analysis.txt)
 
 ## Endpoint Investigation
 
@@ -206,6 +209,7 @@ No malicious execution was observed.
 A DNS query alone was not treated as proof that the user clicked the phishing link.
 
 Evidence:
+![Sysmon phishing domain DNS query](./screenshots/05-sysmon-phishing-domain-dns-query.png)
 
 ## Incident Timeline
 
@@ -290,8 +294,12 @@ screenshots/
 ├── 04-phishing-email-header-analysis.png
 └── 05-sysmon-phishing-domain-dns-query.png
 ```
+- [Python Email Analyzer](./scripts/email_analyzer.py)
+- [Custom Wazuh Rule 100301](./rules/project3_email_rules.xml)
+- [IOC Analysis](./investigation/ioc-analysis.txt)
+- [Incident Case Record](./investigation/incident-case-record.txt)
 Full analyst case record:
-```investigation/incident-case-record.txt```
+investigation/incident-case-record.txt
 ## Skills Demonstrated
 ```
 Phishing email triage
