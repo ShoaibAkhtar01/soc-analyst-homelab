@@ -1,0 +1,25 @@
+PROJECT 3 - PHISHING IOC ANALYSIS
+
+Sender: it-support@company.local
+Classification: Lab email identity
+External enrichment: No
+
+Reply-To: support@security-help.local
+Classification: Suspicious sender/reply-to mismatch; lab domain
+External enrichment: No
+
+URL: http://security-check.example/login
+Classification: Simulated phishing URL; reserved .example domain
+External enrichment: No
+
+Source IP: 192.168.100.3
+Classification: Private lab IP; Kali test system
+External enrichment: No
+
+Message-ID: 20260913030941.022090@kali.kali.org
+Classification: Email correlation/provenance artifact
+External enrichment: No
+
+Mailer: swaks v20240103.0
+Classification: Controlled simulation infrastructure
+External enrichment: No

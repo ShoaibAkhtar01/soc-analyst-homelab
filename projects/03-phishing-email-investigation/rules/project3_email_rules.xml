@@ -1,0 +1,16 @@
+<group name="project3_email_security,windows,phishing,">
+
+  <rule id="100301" level="10">
+    <if_sid>18102</if_sid>
+
+    <id>^3101$</id>
+    <extra_data>^SOC-EmailSecurity$</extra_data>
+
+    <description>Potential phishing email detected by SOC email analyzer</description>
+
+    <mitre>
+      <id>T1566.002</id>
+    </mitre>
+  </rule>
+
+</group>

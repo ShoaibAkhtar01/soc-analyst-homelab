@@ -1,0 +1,204 @@
+PROJECT 3 — PHISHING EMAIL INCIDENT CASE RECORD
+
+CASE TYPE
+Suspicious phishing-style email / credential phishing simulation
+
+ENVIRONMENT
+Victim Endpoint: Windows 10
+Endpoint Monitoring: Sysmon
+SIEM: Wazuh
+Email Receiver: Mailpit
+Email Simulation: Swaks
+Detection: Custom Python Email Analyzer
+
+--------------------------------------------------
+EMAIL EVIDENCE
+--------------------------------------------------
+
+From:
+it-support@company.local
+
+Reply-To:
+support@security-help.local
+
+Recipient:
+employee@company.local
+
+Subject:
+URGENT: Verify your account immediately
+
+Embedded URL:
+http://security-check.example/login
+
+Attachments:
+0
+
+Suspicious Characteristics:
+- Urgency language
+- Account verification request
+- Login/credential-oriented language
+- Embedded URL
+- From/Reply-To domain mismatch
+- Threat of account suspension
+
+--------------------------------------------------
+DETECTION
+--------------------------------------------------
+
+Analyzer Score:
+8
+
+Analyzer Verdict:
+Suspicious
+
+Analyzer Severity:
+High
+
+Windows Detection Event:
+Application Event ID 3101
+Provider: SOC-EmailSecurity
+
+Wazuh Rule:
+100301
+
+Wazuh Rule Level:
+10
+
+Description:
+Potential phishing email detected by SOC email analyzer
+
+MITRE ATT&CK:
+T1566.002 — Phishing: Spearphishing Link
+Tactic: Initial Access
+
+--------------------------------------------------
+ENDPOINT INVESTIGATION
+--------------------------------------------------
+
+Sysmon Event:
+Event ID 22 — DNS Query
+
+Process:
+Microsoft Edge (msedge.exe)
+
+Query:
+security-check.example
+
+DNS Status:
+9003
+
+DNS Result:
+No result returned
+
+Browser History:
+No matching navigation entry found
+
+Sysmon Event ID 3:
+No matching Edge network connection found during investigated time window
+
+Credential Submission:
+Not observed
+
+Malicious Execution:
+Not observed
+
+Endpoint Compromise:
+Not established
+
+--------------------------------------------------
+TIMELINE
+--------------------------------------------------
+
+03:09:39
+Suspicious email delivered to Windows Mailpit.
+
+03:09:41
+Email Date header recorded.
+
+03:10:15
+Microsoft Edge network-service process generated a DNS query for
+security-check.example. DNS resolution failed.
+
+04:43:29
+During later detection-engineering validation, the email analyzer
+generated Windows Application Event ID 3101.
+
+04:43:32
+Wazuh custom Rule 100301 generated a Level 10 phishing alert.
+
+04:59:45
+Additional Event ID 3101 generated during subsequent investigation/testing.
+
+--------------------------------------------------
+IOC ASSESSMENT
+--------------------------------------------------
+
+it-support@company.local
+Lab email identity — not externally enriched.
+
+support@security-help.local
+Suspicious Reply-To mismatch but lab-only domain.
+
+security-check.example
+Reserved simulation domain — not treated as a real-world malicious IOC.
+
+192.168.100.3
+Private Kali lab IP — not suitable for external reputation analysis.
+
+Message-ID / Swaks information
+Controlled simulation provenance, not malicious infrastructure.
+
+--------------------------------------------------
+ANALYST VERDICT
+--------------------------------------------------
+
+Classification:
+Suspicious phishing-style email
+
+Disposition:
+Suspicious — no confirmed successful user interaction
+
+Impact:
+Limited observed impact
+
+Successful Website Connection:
+Not established
+
+Credential Compromise:
+Not observed
+
+Endpoint Compromise:
+Not established
+
+--------------------------------------------------
+ANALYST CONCLUSION
+--------------------------------------------------
+
+The email was classified as suspicious based on urgency and
+credential-verification language, an embedded login URL, and a mismatch
+between the sender and Reply-To domains.
+
+The custom email analyzer generated Windows Event ID 3101, which was
+ingested by Wazuh and triggered custom Rule 100301 at Level 10, mapped
+to MITRE ATT&CK T1566.002.
+
+Endpoint investigation identified Microsoft Edge performing a DNS query
+for the embedded domain. DNS resolution failed, and no corresponding
+browser-history entry or Sysmon network connection was found. No
+credential submission or malicious execution was observed.
+
+Successful user interaction and endpoint compromise were therefore
+not established.
+
+--------------------------------------------------
+RECOMMENDED RESPONSE
+--------------------------------------------------
+
+- Remove/quarantine the suspicious email.
+- Block confirmed malicious sender/domain/URL indicators when applicable.
+- Search for additional recipients or related messages.
+- Review endpoint and account telemetry for further suspicious activity.
+- Verify whether the recipient interacted with the message.
+- Reset credentials and revoke sessions if credential submission is confirmed.
+- Isolate the endpoint if evidence of endpoint compromise is discovered.
+- Preserve email, SIEM, endpoint and timeline evidence.
