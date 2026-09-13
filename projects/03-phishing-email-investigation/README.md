@@ -146,6 +146,13 @@ Windows Event 3101
 Source:
 - [Custom Wazuh Rule 100301](./rules/project3_email_rules.xml)
 Evidence:
+### Wazuh Phishing Alert
+
+![Wazuh phishing alert](./screenshots/02-wazuh-phishing-alert-detected.png)
+
+### Wazuh Alert Details
+
+![Wazuh phishing alert details](./screenshots/03-wazuh-phishing-alert-details.png)
 
 
 ## Email Header Investigation
